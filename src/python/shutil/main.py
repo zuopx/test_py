@@ -23,8 +23,14 @@ def func1(path):
         # for f in fs:
         #     shutil.copy(os.path.join(d, f), newsubpath)
 
+def create_gitkeep(path):
+    """Create a file named .gitkeep in each empty directory rooted path.
+    """
+    for dirname, subdirs, files in os.walk(path):
+        if not files and not subdirs and dirname:
+            print(dirname)
 
 if __name__ == "__main__":
-    path = '/home/percy/Documents/Project/Tutorials/JavaTutorial/src/main/java/percy/spring'
-    func1(path)
+    path = os.getcwd()
+    create_gitkeep(path)
     print('Done!')
