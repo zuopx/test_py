@@ -10,8 +10,15 @@ def create_file(dirs, target):
         os.system(f'touch {file}')
 
 
+def add_lib(dir: str, template: str):
+    """Add .jar files within the given directory into .classpath file based the template."""
+    result = map(lambda filename: template.replace("?", filename), os.listdir(dir))
+    return result
+
+
 if __name__ == "__main__":
-    target = 'README.md'
-    root = os.path.join(os.getcwd(), 'src')
-    dirs = filter(os.path.isdir, map(lambda filename: os.path.join(root, filename), os.listdir(root)))
-    create_file(dirs, target)
+    dir = '/home/percy/Projects/Tutorials/mrbbs/WebContent/WEB-INF/lib'
+    template = '<classpathentry kind="lib" path="WebContent/WEB-INF/lib/?"/>'
+    result = add_lib(dir, template)
+    for r in result:
+        print(r)

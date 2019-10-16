@@ -3,3 +3,5 @@
 #
 
 .vscode/
+.ipynb_*/
+__pycache__/
