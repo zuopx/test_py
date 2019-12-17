@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 #vscode
 #
@@ -5,3 +6,19 @@
 .vscode/
 .ipynb_*/
 __pycache__/
+=======
+#
+# vscode
+#
+
+.vscode/
+.ipynb_*/
+__pycache__/
+
+
+#
+# pycharm
+#
+
+.idea
+>>>>>>> abbc175a23580a3fff4e89c21be39700819f6152
