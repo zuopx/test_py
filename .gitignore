@@ -1,7 +1,14 @@
 #
-#vscode
+# vscode
 #
 
 .vscode/
 .ipynb_*/
 __pycache__/
+
+
+#
+# pycharm
+#
+
+.idea
