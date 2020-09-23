@@ -4,7 +4,11 @@ delegating generator: 打通subgenerator和caller之间的通信通道。
 subgenerator
 
 caller
+
+执行权的转移：
+当gen调用yield from subgen，执行权转移到caller和subgen，只有当subgen终止了，执行权才回到gen。
 '''
+import sys
 from inspect import getgeneratorstate
 from collections import namedtuple
 import pytest
@@ -24,19 +28,72 @@ def averager():  # subgenerator
     return Result(count, average)
 
 
-def grouper(results, key):  # delegating generator
+def grouper(results, key):  # delegating generator function
     while True:
+        # 当subgen终止时，执行权才返回gen，results[key]的值为StopIteration.value。
+        # 执行权返回到gen后，必须执行到yield，否则会出触发StopIteration异常。
         results[key] = yield from averager()
 
 
-def test_averager():
-    avg = averager()
-    next(avg)
-    avg.send(1)
-    avg.send(2)
-    avg.send(3)
-    with pytest.raises(StopIteration):
-        avg.send(None)
+def grouper1(results, key):
+    while True:
+        avg = iter(averager())
+        try:
+            y = next(avg)  # prime generator
+        except StopIteration as e:
+            r = e.value
+        else:
+            while True:
+                s = yield y
+                try:
+                    y = avg.send(s)
+                except StopIteration as e:
+                    r = e.value
+                    break
+        results[key] = r
+
+
+def grouper2(results, key):
+    while True:
+        avg = iter(averager())
+        try:
+            y = next(avg)
+        except StopIteration as e:
+            r = e.value
+        else:
+            while True:
+                try:
+                    s = yield y
+                except GeneratorExit as e:
+                    try:
+                        m = avg.close
+                    except AttributeError:
+                        pass
+                    else:
+                        m()
+                    raise e
+                except BaseException as e:
+                    x = sys.exc_info()
+                    try:
+                        m = avg.throw
+                    except AttributeError:
+                        raise e
+                    else:
+                        try:
+                            y = m(x)
+                        except StopIteration as e:
+                            r = e.value
+                            break
+                else:
+                    try:
+                        if s is None:
+                            y = next(avg)
+                        else:
+                            y = avg.send(s)
+                    except StopIteration as e:
+                        r = e.value
+                        break
+        results[key] = r
 
 
 data = {
@@ -51,20 +108,25 @@ data = {
 }
 
 
+def report(results):
+    for key, result in sorted(results.items()):
+        group, unit = key.split(';')
+        print('{:2} {:5} averaging {:.2f}{}'.format(
+            result.count, group, result.average, unit))
+
+
 def test_delegating_generator():
     results = {}
     for key, values in data.items():
-        group = grouper(results, key)  # 返回一个generator object
+        group = grouper1(results, key)  # 返回一个delegating generator object
         next(group)
         for value in values:
             group.send(value)
         group.send(None)
-
-    print(results)
+    report(results)
 
 
 if __name__ == "__main__":
     prefix = __file__ + '::'
     func = 'test_delegating_generator'
-    # func = 'test_averager'
     pytest.main([prefix + func, '-s'])
