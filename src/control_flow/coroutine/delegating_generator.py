@@ -25,7 +25,7 @@ def averager():  # subgenerator
             break
         average = (count * average + term) / (count + 1)
         count += 1
-    return Result(count, average)
+    return Result(count, average)  # Python2 doesn't support return with generators.
 
 
 def grouper(results, key):  # delegating generator function
