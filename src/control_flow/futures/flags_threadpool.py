@@ -47,7 +47,7 @@ def download_many3(cc_list):
     with futures.ThreadPoolExecutor(max_workers=1) as executor:
         to_do = []
         for cc in sorted(cc_list):
-            future = executor.submit(download_one, cc)
+            future = executor.submit(download_one, cc)  # 提交了之后就开始运行
             to_do.append(future)
             msg = 'Scheduled for {}: {}'
             print(msg.format(cc, future))
