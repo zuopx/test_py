@@ -1,7 +1,7 @@
 """对xlsx文件的读写"""
-
 import unittest
 import openpyxl
+
 
 class TestOpenpyxl(unittest.TestCase):
 
@@ -27,8 +27,7 @@ class TestOpenpyxl(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    # suite = unittest.TestSuite()
-    # suite.addTest(TestOpenpyxl("testWrite"))
-    # runner = unittest.TextTestRunner()
-    # runner.run(suite)
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(TestOpenpyxl("testWrite"))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
