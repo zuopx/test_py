@@ -13,7 +13,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 # add formatter to ch
 ch.setFormatter(formatter)
 # add ch to logger
-# logger.addHandler(ch)
+logger.addHandler(ch)
 # 'application' code
 logger.propagate = False
 logger.debug('debug message')

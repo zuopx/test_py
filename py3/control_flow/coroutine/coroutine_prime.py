@@ -1,3 +1,4 @@
+""""""
 import functools
 from inspect import getgeneratorstate
 import pytest
@@ -10,6 +11,7 @@ def coroutine(func):
         next(gen)
         return gen
     return primer
+
 
 @coroutine
 def averager():

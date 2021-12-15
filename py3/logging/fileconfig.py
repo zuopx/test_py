@@ -1,8 +1,10 @@
 import logging
 import logging.config
-logging.config.fileConfig('py3/python/logging/logging.conf')
+logging.config.fileConfig('py3/logging/logging.conf')
+
 # create logger
 logger = logging.getLogger('simpleExample')
+
 # 'application' code
 logger.debug('debug message')
 logger.info('info message')
