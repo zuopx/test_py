@@ -75,7 +75,7 @@ def test_looking_glass1():
 
     with pytest.raises(NameError):
         with LookingGlass() as what:
-            print(who)
+            print(what)
 
 
 def test_looking_glass2():
