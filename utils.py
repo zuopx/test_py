@@ -10,11 +10,17 @@ class OS:
         """当前进程的内存使用，单位MB"""
         return psutil.Process(os.getpid()).memory_info().rss / 1024 / 1024
 
+
 class Runtime:
     @staticmethod
     def get_frame():
         return sys._getframe()
-        
+
+
+def Print(*args, **kwargs):
+    print()
+    print()
+    print(*args, **kwargs)
 
 
 def main():
