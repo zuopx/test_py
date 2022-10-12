@@ -1,0 +1,61 @@
+  1           0 LOAD_CONST               0 (3.14)
+              2 STORE_NAME               0 (PI)
+
+  4           4 LOAD_CONST               1 (<code object circle_area at 0x000001DBD2F5FEC0, file "demo.py", line 4>)
+              6 LOAD_CONST               2 ('circle_area')
+              8 MAKE_FUNCTION            0
+             10 STORE_NAME               1 (circle_area)
+
+  8          12 LOAD_BUILD_CLASS
+             14 LOAD_CONST               3 (<code object Dog at 0x000001DBD2FAE1E0, file "demo.py", line 8>)
+             16 LOAD_CONST               4 ('Dog')
+             18 MAKE_FUNCTION            0
+             20 LOAD_CONST               4 ('Dog')
+             22 LOAD_NAME                2 (object)
+             24 CALL_FUNCTION            3
+             26 STORE_NAME               3 (Dog)
+             28 LOAD_CONST               5 (None)
+             30 RETURN_VALUE
+
+Disassembly of <code object circle_area at 0x000001DBD2F5FEC0, file "demo.py", line 4>:
+  5           0 LOAD_GLOBAL              0 (PI)
+              2 LOAD_FAST                0 (r)
+              4 LOAD_CONST               1 (2)
+              6 BINARY_POWER
+              8 BINARY_MULTIPLY
+             10 RETURN_VALUE
+
+Disassembly of <code object Dog at 0x000001DBD2FAE1E0, file "demo.py", line 8>:
+  8           0 LOAD_NAME                0 (__name__)
+              2 STORE_NAME               1 (__module__)
+              4 LOAD_CONST               0 ('Dog')
+              6 STORE_NAME               2 (__qualname__)
+
+ 10           8 LOAD_CONST               1 (<code object __init__ at 0x000001DBD2F5FB50, file "demo.py", line 10>)
+             10 LOAD_CONST               2 ('Dog.__init__')
+             12 MAKE_FUNCTION            0
+             14 STORE_NAME               3 (__init__)
+
+ 13          16 LOAD_CONST               3 (<code object yelp at 0x000001DBD2FAE130, file "demo.py", line 13>)
+             18 LOAD_CONST               4 ('Dog.yelp')
+             20 MAKE_FUNCTION            0
+             22 STORE_NAME               4 (yelp)
+             24 LOAD_CONST               5 (None)
+             26 RETURN_VALUE
+
+Disassembly of <code object __init__ at 0x000001DBD2F5FB50, file "demo.py", line 10>:
+ 11           0 LOAD_FAST                1 (name)
+              2 LOAD_FAST                0 (self)
+              4 STORE_ATTR               0 (name)
+              6 LOAD_CONST               0 (None)
+              8 RETURN_VALUE
+
+Disassembly of <code object yelp at 0x000001DBD2FAE130, file "demo.py", line 13>:
+ 14           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_CONST               1 ('woof, i am')
+              4 LOAD_FAST                0 (self)
+              6 LOAD_ATTR                1 (name)
+              8 CALL_FUNCTION            2
+             10 POP_TOP
+             12 LOAD_CONST               0 (None)
+             14 RETURN_VALUE
