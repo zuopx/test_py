@@ -43,7 +43,7 @@ class EventLoop:
 
     def run_coroutine(self, co):
         try:
-            future = co.send(None)
+            future = co.send(None)  # 执行权在此处切换
             future.set_coroutine(co)
         except StopIteration as e:
             print('coroutine {} stopped'.format(co.__name__))
@@ -83,7 +83,7 @@ class Future:
 
     def __await__(self):
         if not self.done:
-            yield self
+            yield self  # 通过yield让出执行权
         return self.result
 
 
@@ -96,7 +96,7 @@ class AsyncSocket:
         self.loop = loop
 
     def fileno(self):
-        return self.sock.fileno()
+        return self.sock.fileno()  # IO的标识
 
     def create_future_for_events(self, events):
         future = self.loop.create_future()

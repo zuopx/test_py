@@ -11,19 +11,14 @@
         "**/.pytest_cache": true,
     },
     "python.formatting.autopep8Args": [
-        "--max-line-length", "120",
-    ],
-    "python.pythonPath": "C:\\Users\\zuopanxing\\Miniconda3\\envs\\py3.10.6\\python.exe",
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "py3",
-        "-p",
-        "*_test.py"
+        "--max-line-length",
+        "120",
     ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
-        ".", "-s"
-    ]
+        ".",
+        "-s"
+    ],
+    "python.pythonPath": "C:\\Users\\zuopanxing\\Miniconda3\\envs\\py3.10\\python.exe"
 }

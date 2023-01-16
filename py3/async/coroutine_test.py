@@ -43,12 +43,13 @@ class TestCoroutine:
                 co.send(None)
 
     def test_del(self):
+        """删除一个还未结束的协程"""
         co = circle_area_async(1)
         with pytest.warns(RuntimeWarning):
             del co
 
     def test_await(self):
-        """await job 等价于 yield from job._await__()"""
+        """await job 等价于 yield from job.__await__()"""
         class Job:
             def __await__(self):
                 yield 1

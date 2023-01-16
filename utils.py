@@ -1,7 +1,9 @@
 """"""
 import os
 import sys
+import time
 import psutil
+import functools
 
 
 class OS:
@@ -15,6 +17,18 @@ class Runtime:
     @staticmethod
     def get_frame():
         return sys._getframe()
+
+
+class Decorator:
+    @staticmethod
+    def print_start_end_async(func):
+        @functools.wraps(func)
+        async def wrapper(*args, **kwargs):
+            print(f"start at: {time.strftime('%X')}", )
+            ret = await func(*args, **kwargs)
+            print(f"ended at: {time.strftime('%X')}", )
+            return ret
+        return wrapper
 
 
 def Print(*args, **kwargs):

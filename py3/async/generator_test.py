@@ -63,6 +63,7 @@ class TestGenerator:
 
         def func():
             while 1:
+                print(sys._getframe(0).f_code.co_name, sys._getframe(1).f_code.co_name)
                 yield sys._getframe(0), sys._getframe(1)
 
         gen = func()
