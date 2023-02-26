@@ -158,7 +158,7 @@ class TestRun:
     def test_return_await():
         """return await awaitable
         
-        该语句会阻塞，直到awaitable执行到ruturn语句（而非yield）
+        该语句会阻塞，直到awaitable执行到ruturn语句（而非yield）；但整个asyncio不会堵塞
         """
         print()
 
