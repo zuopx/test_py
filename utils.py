@@ -29,17 +29,3 @@ class Decorator:
             print(f"ended at: {time.strftime('%X')}", )
             return ret
         return wrapper
-
-
-def Print(*args, **kwargs):
-    print()
-    print()
-    print(*args, **kwargs)
-
-
-def main():
-    print("hello, world")
-
-
-if __name__ == "__main__":
-    main()
