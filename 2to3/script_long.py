@@ -1,0 +1,1 @@
+a = isinstance(1, long)

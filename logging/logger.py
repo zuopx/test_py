@@ -10,6 +10,12 @@ def InitLogger():
     if logger is not None:
         return
 
+    logging.basicConfig(
+        handlers=[logging.StreamHandler(), logging.FileHandler(f"{datetime.date.today()}.log", "a")],
+        format=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'),
+        level=logging.DEBUG
+    )
+
     logger = logging.getLogger()
     handler1 = logging.StreamHandler()
     handler2 = logging.FileHandler(f"{datetime.date.today()}.log", "a")

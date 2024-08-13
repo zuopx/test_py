@@ -20,7 +20,7 @@ def func():
     try:
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        server.bind((socket.gethostname(), 9999))
+        server.bind(("127.0.0.1", 9999))
         server.listen(5)
 
         while True:
@@ -31,7 +31,9 @@ def func():
             msg = "welcome to visit me!"
             client.send(msg.encode("utf8"))
 
-            client.close()
+            while True:
+                print(client.recv(1024))
+
     except Exception as e:
         raise e
     finally:
