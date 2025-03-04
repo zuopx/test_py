@@ -1,9 +1,11 @@
-""""""
-from lib.logging.logger import logger
+"""telnetlib3
+
+require: asyncio
+"""
+import telnetlib3
 
 
 def main():
-    logger.info("Im b.")
     print("hello, world")
 
 

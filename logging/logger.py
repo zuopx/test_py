@@ -12,7 +12,7 @@ def InitLogger():
 
     logging.basicConfig(
         handlers=[logging.StreamHandler(), logging.FileHandler(f"{datetime.date.today()}.log", "a")],
-        format=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'),
+        format=logging.Formatter("%(asctime)s %(name)s-%(levelname)s-%(message)s", "%Y-%m-%d %H:%M:%S"),
         level=logging.DEBUG
     )
 
