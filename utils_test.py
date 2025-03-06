@@ -8,6 +8,8 @@ class TestOS:
 
 
 def main():
+    TestOS().test_get_memory_usage()
+
     print("hello, world")
 
 
