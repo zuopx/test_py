@@ -1,6 +1,12 @@
 """grpc server
 
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. example.proto
+depencency:
+    grpcio                    1.71.0          py312h6a678d5_0  
+    grpcio-tools              1.71.0          py312h6a678d5_0
+
+    python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. example.proto
+
+三个层次：server -> servicer -> handlers
 """
 
 
